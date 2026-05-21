@@ -1,4 +1,5 @@
 import type { LetterState } from '../types'
+import { STATE_COLORS } from '../lib/colors'
 
 interface KeyboardProps {
   keyStates: Record<string, LetterState>
@@ -13,9 +14,9 @@ const ROWS = [
 ]
 
 const STATE_CLASSES: Record<LetterState, string> = {
-  correct: 'bg-slate-800 text-amber-50',
-  present: 'bg-amber-500 text-slate-900',
-  absent: 'bg-slate-400 text-white',
+  correct: `${STATE_COLORS.correct.bg} ${STATE_COLORS.correct.text}`,
+  present: `${STATE_COLORS.present.bg} ${STATE_COLORS.present.text}`,
+  absent: `${STATE_COLORS.absent.bg} ${STATE_COLORS.absent.text}`,
 }
 
 export function Keyboard({ keyStates, onPress, disabled }: KeyboardProps) {

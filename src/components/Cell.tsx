@@ -1,14 +1,18 @@
 import type { LetterState } from '../types'
+import { STATE_COLORS } from '../lib/colors'
 
 interface CellProps {
   letter: string
   state: LetterState | 'empty' | 'pending'
 }
 
+const letterStateClass = (state: LetterState) =>
+  `${STATE_COLORS[state].bg} ${STATE_COLORS[state].text} ${STATE_COLORS[state].border}`
+
 const STATE_CLASSES: Record<CellProps['state'], string> = {
-  correct: 'bg-slate-800 text-amber-50 border-slate-800',
-  present: 'bg-amber-500 text-slate-900 border-amber-500',
-  absent: 'bg-slate-400 text-white border-slate-400',
+  correct: letterStateClass('correct'),
+  present: letterStateClass('present'),
+  absent: letterStateClass('absent'),
   pending: 'bg-white text-slate-900 border-slate-500',
   empty: 'bg-white text-slate-900 border-slate-300',
 }

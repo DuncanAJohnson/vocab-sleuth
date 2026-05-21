@@ -13,7 +13,7 @@ export function Header({ rightLink }: HeaderProps) {
       <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-3">
         <Link
           href="/"
-          className="flex items-center gap-2 text-2xl font-bold tracking-tight text-slate-900 hover:text-amber-600"
+          className="flex items-center gap-2 text-2xl font-bold tracking-tight text-slate-900 hover:text-green-900"
         >
           <img src={logo} alt="" className="h-8 w-8" />
           Vocab Sleuth

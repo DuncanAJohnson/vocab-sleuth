@@ -13,8 +13,8 @@ export function EndBanner({ status, answer }: EndBannerProps) {
       className={
         'rounded-lg px-4 py-3 text-center text-sm font-semibold ring-1 ' +
         (won
-          ? 'bg-slate-800 text-amber-50 ring-slate-800'
-          : 'bg-amber-50 text-slate-900 ring-amber-300')
+          ? 'bg-slate-800 text-white ring-slate-800'
+          : 'bg-white text-slate-900 ring-amber-300')
       }
     >
       {won ? (

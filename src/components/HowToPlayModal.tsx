@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { STATE_COLORS } from '../lib/colors'
 
 const OPEN_EVENT = 'vocabsleuth:howtoplay'
 
@@ -59,21 +60,21 @@ export function HowToPlayModal({ open, onClose }: HowToPlayModalProps) {
           <li className="flex items-center gap-3">
             <ExampleCell letter="A" variant="correct" />
             <span>
-              <span className="font-semibold">Navy Blue:</span> right letter, right
+              <span className="font-semibold">{STATE_COLORS.correct.name}:</span> right letter, right
               spot.
             </span>
           </li>
           <li className="flex items-center gap-3">
             <ExampleCell letter="B" variant="present" />
             <span>
-              <span className="font-semibold">Orange:</span> right letter, wrong
+              <span className="font-semibold">{STATE_COLORS.present.name}:</span> right letter, wrong
               spot.
             </span>
           </li>
           <li className="flex items-center gap-3">
             <ExampleCell letter="C" variant="absent" />
             <span>
-              <span className="font-semibold">Gray:</span> not in the word.
+              <span className="font-semibold">{STATE_COLORS.absent.name}:</span> not in the word.
             </span>
           </li>
         </ul>
@@ -141,9 +142,9 @@ interface ExampleCellProps {
 }
 
 const VARIANT_CLASSES: Record<ExampleCellProps['variant'], string> = {
-  correct: 'bg-slate-800 text-amber-50 border-slate-800',
-  present: 'bg-amber-500 text-slate-900 border-amber-500',
-  absent: 'bg-slate-400 text-white border-slate-400',
+  correct: `${STATE_COLORS.correct.bg} ${STATE_COLORS.correct.text} ${STATE_COLORS.correct.border}`,
+  present: `${STATE_COLORS.present.bg} ${STATE_COLORS.present.text} ${STATE_COLORS.present.border}`,
+  absent: `${STATE_COLORS.absent.bg} ${STATE_COLORS.absent.text} ${STATE_COLORS.absent.border}`,
 }
 
 function ExampleCell({ letter, variant }: ExampleCellProps) {
