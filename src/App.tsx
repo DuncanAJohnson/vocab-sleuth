@@ -1,23 +1,15 @@
-import { useState } from 'react'
+import { useHashRoute } from './hooks/useHashRoute'
+import { GamePage } from './pages/GamePage'
+import { WordListPage } from './pages/WordListPage'
+import { AboutPage } from './pages/AboutPage'
+import { PrivacyPage } from './pages/PrivacyPage'
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 text-slate-900">
-      <h1 className="text-4xl font-bold mb-4">Vocab Sleuth</h1>
-      <p className="text-slate-600 mb-6">
-        Vite + React + Tailwind is wired up.
-      </p>
-      <button
-        type="button"
-        onClick={() => setCount((c) => c + 1)}
-        className="px-4 py-2 rounded-md bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition"
-      >
-        Count is {count}
-      </button>
-    </div>
-  )
+  const route = useHashRoute()
+  if (route === '/words') return <WordListPage />
+  if (route === '/about') return <AboutPage />
+  if (route === '/privacy') return <PrivacyPage />
+  return <GamePage />
 }
 
 export default App

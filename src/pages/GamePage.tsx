@@ -1,0 +1,115 @@
+import { useState } from 'react'
+import type { GradeId, GradeMeta } from '../types'
+import { getGrade } from '../lib/grades'
+import { loadSelectedGrade, saveSelectedGrade } from '../lib/storage'
+import { useWordleGame } from '../hooks/useWordleGame'
+import { Header } from '../components/Header'
+import { GradeModal } from '../components/GradeModal'
+import { Board } from '../components/Board'
+import { Keyboard } from '../components/Keyboard'
+import { EndBanner } from '../components/EndBanner'
+
+export function GamePage() {
+  const [gradeId, setGradeId] = useState<GradeId | null>(() => loadSelectedGrade())
+  const [modalOpen, setModalOpen] = useState(() => loadSelectedGrade() === null)
+
+  const grade = gradeId ? getGrade(gradeId) : null
+
+  const handleSelect = (id: GradeId) => {
+    setGradeId(id)
+    saveSelectedGrade(id)
+    setModalOpen(false)
+  }
+
+  return (
+    <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900">
+      <Header rightLink={{ href: '#/words', label: 'Word Lists' }} />
+      <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col items-center gap-6 px-4 py-6">
+        {grade && (
+          <GameBody
+            key={grade.id}
+            grade={grade}
+            onChangeGrade={() => setModalOpen(true)}
+          />
+        )}
+      </main>
+      <GradeModal
+        open={modalOpen}
+        onSelect={handleSelect}
+        onClose={gradeId ? () => setModalOpen(false) : undefined}
+        currentGrade={gradeId}
+      />
+      <div className="mx-auto flex w-full max-w-3xl items-center justify-center gap-4 px-4 pb-4 text-center">
+        <a
+          href="#/about"
+          className="text-sm text-slate-500 hover:text-amber-700"
+        >
+          about
+        </a>
+        <a
+          href="#/privacy"
+          className="text-sm text-slate-500 hover:text-amber-700"
+        >
+          privacy
+        </a>
+      </div>
+    </div>
+  )
+}
+
+interface GameBodyProps {
+  grade: GradeMeta
+  onChangeGrade: () => void
+}
+
+function GameBody({ grade, onChangeGrade }: GameBodyProps) {
+  const game = useWordleGame(grade)
+  const canReset = game.guesses.length > 0 || game.currentGuess.length > 0
+
+  if (!game.answer) {
+    return (
+      <p className="rounded-md bg-amber-50 px-4 py-3 text-sm text-slate-700 ring-1 ring-amber-200">
+        No words configured for {grade.id} yet. Add some to{' '}
+        <code className="font-mono">src/data/grades-{grade.id}.json</code>.
+      </p>
+    )
+  }
+  return (
+    <>
+      <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-slate-600">
+        <span>{grade.label}</span>
+        <button
+          type="button"
+          onClick={onChangeGrade}
+          className="rounded-md bg-white px-3 py-1.5 font-medium text-slate-800 ring-1 ring-slate-300 hover:bg-amber-50 hover:ring-amber-400"
+        >
+          Change grade
+        </button>
+        <button
+          type="button"
+          onClick={game.reset}
+          disabled={!canReset}
+          className="rounded-md bg-white px-3 py-1.5 font-medium text-slate-800 ring-1 ring-slate-300 hover:bg-amber-50 hover:ring-amber-400 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-white disabled:hover:ring-slate-300"
+        >
+          Reset
+        </button>
+      </div>
+      <Board
+        wordLength={game.wordLength}
+        guesses={game.guesses}
+        scoredGuesses={game.scoredGuesses}
+        currentGuess={game.currentGuess}
+        invalidShake={game.invalidShake}
+      />
+      <div className="h-6 text-sm font-medium text-amber-700" aria-live="polite">
+        {game.error}
+      </div>
+      <EndBanner status={game.status} answer={game.answer} />
+      <Keyboard
+        keyStates={game.keyStates}
+        onPress={game.press}
+        disabled={game.status !== 'playing'}
+      />
+    </>
+  )
+}
