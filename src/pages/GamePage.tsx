@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { GradeId, GradeMeta } from '../types'
-import { getGrade } from '../lib/grades'
+import { GRADES, getGrade } from '../lib/grades'
 import { loadSelectedGrade, saveSelectedGrade } from '../lib/storage'
 import { useWordleGame } from '../hooks/useWordleGame'
 import { Header } from '../components/Header'
@@ -25,12 +25,14 @@ export function GamePage() {
     <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900">
       <Header rightLink={{ href: '#/words', label: 'Word Lists' }} />
       <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col items-center gap-6 px-4 py-6">
-        {grade && (
+        {grade ? (
           <GameBody
             key={grade.id}
             grade={grade}
             onChangeGrade={() => setModalOpen(true)}
           />
+        ) : (
+          <GamePreview />
         )}
       </main>
       <GradeModal
@@ -54,6 +56,26 @@ export function GamePage() {
         </a>
       </div>
     </div>
+  )
+}
+
+function GamePreview() {
+  const wordLength = GRADES[0]?.list.wordLength ?? 5
+  return (
+    <>
+      <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-slate-600">
+        <span className="invisible">placeholder</span>
+      </div>
+      <Board
+        wordLength={wordLength}
+        guesses={[]}
+        scoredGuesses={[]}
+        currentGuess=""
+        invalidShake={false}
+      />
+      <div className="h-6" aria-hidden="true" />
+      <Keyboard keyStates={{}} onPress={() => {}} disabled />
+    </>
   )
 }
 

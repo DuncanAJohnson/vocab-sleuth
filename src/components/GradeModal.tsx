@@ -22,12 +22,29 @@ export function GradeModal({ open, onSelect, onClose, currentGrade }: GradeModal
         className="w-full max-w-md rounded-xl bg-white p-6 shadow-2xl ring-1 ring-slate-200"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 id="grade-modal-title" className="mb-1 text-xl font-semibold text-slate-900">
-          Pick your grade level
-        </h2>
-        <p className="mb-4 text-sm text-slate-600">
-          Each grade band has its own word list and word length.
-        </p>
+        {currentGrade === null ? (
+          <>
+            <h2 id="grade-modal-title" className="mb-1 text-xl font-semibold text-slate-900">
+              Welcome to Vocab Sleuth
+            </h2>
+            <p className="mb-2 text-sm text-slate-600">
+              A daily Wordle-style word puzzle with answers pulled from a grade-appropriate
+              vocabulary list.
+            </p>
+            <p className="mb-4 text-sm font-medium text-slate-700">
+              Pick a grade level to get started:
+            </p>
+          </>
+        ) : (
+          <>
+            <h2 id="grade-modal-title" className="mb-1 text-xl font-semibold text-slate-900">
+              Pick your grade level
+            </h2>
+            <p className="mb-4 text-sm text-slate-600">
+              Each grade band has its own word list and word length.
+            </p>
+          </>
+        )}
         <div className="grid grid-cols-2 gap-3">
           {GRADES.map((g) => {
             const active = g.id === currentGrade
