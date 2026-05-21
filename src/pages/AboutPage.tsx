@@ -3,7 +3,7 @@ import { Header } from '../components/Header'
 export function AboutPage() {
   return (
     <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900">
-      <Header rightLink={{ href: '#/', label: '← Back to game' }} />
+      <Header rightLink={{ href: '/', label: '← Back to game' }} />
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-6">
         <h1 className="mb-2 text-2xl font-bold">About</h1>
         <p className="mb-6 text-sm text-slate-600">

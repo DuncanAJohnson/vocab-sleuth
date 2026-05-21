@@ -17,7 +17,7 @@ export function WordListPage() {
 
   return (
     <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900">
-      <Header rightLink={{ href: '#/', label: '← Back to game' }} />
+      <Header rightLink={{ href: '/', label: '← Back to game' }} />
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-6">
         <h1 className="mb-1 text-2xl font-bold">Word Lists</h1>
         <p className="mb-5 text-sm text-slate-600">

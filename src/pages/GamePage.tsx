@@ -4,6 +4,7 @@ import { GRADES, getGrade } from '../lib/grades'
 import { loadSelectedGrade, saveSelectedGrade } from '../lib/storage'
 import { useWordleGame } from '../hooks/useWordleGame'
 import { Header } from '../components/Header'
+import { Link } from '../components/Link'
 import { GradeModal } from '../components/GradeModal'
 import { Board } from '../components/Board'
 import { Keyboard } from '../components/Keyboard'
@@ -23,7 +24,7 @@ export function GamePage() {
 
   return (
     <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900">
-      <Header rightLink={{ href: '#/words', label: 'Word Lists' }} />
+      <Header rightLink={{ href: '/words', label: 'Word Lists' }} />
       <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col items-center gap-6 px-4 py-6">
         {grade ? (
           <GameBody
@@ -42,18 +43,18 @@ export function GamePage() {
         currentGrade={gradeId}
       />
       <div className="mx-auto flex w-full max-w-3xl items-center justify-center gap-4 px-4 pb-4 text-center">
-        <a
-          href="#/about"
+        <Link
+          href="/about"
           className="text-sm text-slate-500 hover:text-amber-700"
         >
           about
-        </a>
-        <a
-          href="#/privacy"
+        </Link>
+        <Link
+          href="/privacy"
           className="text-sm text-slate-500 hover:text-amber-700"
         >
           privacy
-        </a>
+        </Link>
       </div>
     </div>
   )
