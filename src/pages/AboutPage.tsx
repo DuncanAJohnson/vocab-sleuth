@@ -7,7 +7,7 @@ export function AboutPage() {
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-6">
         <h1 className="mb-2 text-2xl font-bold">About</h1>
         <p className="mb-6 text-sm text-slate-600">
-          A classroom-friendly word game built for teachers and their students.
+          A classroom-friendly Wordle-style game built for teachers and their students.
         </p>
 
         <section className="mb-6 rounded-lg bg-white p-5 ring-1 ring-slate-200">

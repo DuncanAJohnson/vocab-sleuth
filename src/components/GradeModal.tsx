@@ -1,5 +1,6 @@
 import type { GradeId } from '../types'
 import { GRADES } from '../lib/grades'
+import { openHowToPlay } from './HowToPlayModal'
 
 interface GradeModalProps {
   open: boolean
@@ -72,6 +73,18 @@ export function GradeModal({ open, onSelect, onClose, currentGrade }: GradeModal
             )
           })}
         </div>
+        {currentGrade === null && (
+          <p className="mt-4 text-center text-sm text-slate-600">
+            New to the game?{' '}
+            <button
+              type="button"
+              onClick={openHowToPlay}
+              className="font-medium text-amber-700 underline-offset-4 hover:underline"
+            >
+              Learn how to play
+            </button>
+          </p>
+        )}
       </div>
     </div>
   )
