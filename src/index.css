@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+.handwriting {
+  font-family: "Segoe Script", "Bradley Hand", "Snell Roundhand", "Comic Sans MS", cursive;
+}
+
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
   20% { transform: translateX(-6px); }

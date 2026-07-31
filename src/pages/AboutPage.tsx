@@ -1,4 +1,7 @@
 import { Header } from '../components/Header'
+import { Footer } from '../components/Footer'
+import edtechathonLogo from '../assets/logo.svg'
+import participants from '../assets/2026participants.jpg'
 
 export function AboutPage() {
   return (
@@ -11,7 +14,14 @@ export function AboutPage() {
         </p>
 
         <section className="mb-6 rounded-lg bg-white p-5 ring-1 ring-slate-200">
-          <h2 className="mb-2 text-lg font-semibold">From the EdTech-a-thon</h2>
+          <div className="mb-2 flex items-center gap-3">
+            <img
+              src={edtechathonLogo}
+              alt=""
+              className="h-10 w-10 shrink-0"
+            />
+            <h2 className="text-lg font-semibold">From the EdTech-a-thon</h2>
+          </div>
           <p className="text-sm leading-relaxed text-slate-700">
             Vocab Sleuth is a project from the{' '}
             <a
@@ -34,6 +44,17 @@ export function AboutPage() {
             </a>
             .
           </p>
+
+          <figure className="mx-auto mt-6 w-full max-w-lg -rotate-1 rounded-sm bg-white p-3 pb-6 shadow-lg ring-1 ring-slate-200">
+            <img
+              src={participants}
+              alt="Participants of the 2026 EdTech-a-thon"
+              className="w-full bg-slate-100"
+            />
+            <figcaption className="handwriting pt-5 text-center text-lg text-slate-700">
+              EdTech-a-thon 2026
+            </figcaption>
+          </figure>
         </section>
 
         <section className="mb-6 rounded-lg bg-white p-5 ring-1 ring-slate-200">
@@ -65,6 +86,7 @@ export function AboutPage() {
           </a>
         </section>
       </main>
+      <Footer />
     </div>
   )
 }

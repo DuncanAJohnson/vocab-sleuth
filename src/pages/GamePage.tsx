@@ -4,7 +4,7 @@ import { GRADES, getGrade } from '../lib/grades'
 import { loadSelectedGrade, saveSelectedGrade } from '../lib/storage'
 import { useWordleGame } from '../hooks/useWordleGame'
 import { Header } from '../components/Header'
-import { Link } from '../components/Link'
+import { Footer } from '../components/Footer'
 import { GradeModal } from '../components/GradeModal'
 import { Board } from '../components/Board'
 import { Keyboard } from '../components/Keyboard'
@@ -42,20 +42,7 @@ export function GamePage() {
         onClose={gradeId ? () => setModalOpen(false) : undefined}
         currentGrade={gradeId}
       />
-      <div className="mx-auto flex w-full max-w-3xl items-center justify-center gap-4 px-4 pb-4 text-center">
-        <Link
-          href="/about"
-          className="text-sm text-slate-500 hover:text-amber-700"
-        >
-          about
-        </Link>
-        <Link
-          href="/privacy"
-          className="text-sm text-slate-500 hover:text-amber-700"
-        >
-          privacy
-        </Link>
-      </div>
+      <Footer />
     </div>
   )
 }
